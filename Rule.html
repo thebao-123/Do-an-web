@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="vi">
+    <head>
+        <meta charset="UTF-8">
+        <title>RuLe - Ado</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            body{
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    background: rgba(8, 4, 85, 0.916);
+    color:rgb(248, 248, 248);
+    overflow: hidden;/*nếu nội dung bị tràn ra ngòa thì dùng overflow: hidden; để ẩn đi*/
+}
+.play-music{
+    width: 100%;
+    position: relative;
+}
+.background {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+.background-image {
+  display: block;
+  margin: 0 auto;     
+  max-width: 100%;
+  height: auto;
+  max-height: 70vh;
+  object-fit: cover;
+}
+
+.audio{
+    position:relative;
+    text-align: center;
+    width: 100%;
+    margin-top: 20px;
+}
+.lyrics{
+    position: relative;
+    text-align: center;
+    margin-top: 20px;
+    width: 100%;
+    line-height: 1.6;
+}
+.Japanese{
+    font-size: 24px;
+    font-weight: bold;
+}
+.Romaji{
+    font-size: 24px;
+}
+.Vietnamese{
+    font-size: 24px;
+}
+
+        </style>
+    </head>
+    <body>
+        <!--Nội dung-->
+        <div class="play-music">
+            
+            <!--Ảnh background-->
+            <div class="background">
+                <img class="background-image" src="Rule.jpg" alt="background">
+            </div>
+            
+            <!--SUB-->
+            <div class="lyrics">
+                <div class="Japanese">ルル - Ado</div>
+                <div class="Romaji">RuLe - Ado</div>
+                <div class="Vietnamese">Quy tắc - Ado</div>
+            </div>
+
+            <!--Nhạc-->
+            <div class="audio">
+                <audio id="song" src="Rule.mp3" controls></audio>
+            </div>
+            
+        </div>
+    </body>
+    <script>
+    const lyrics = [
+  { time: 7.54, J: "ちゃっちゃっちゃちゃ なななななー", R: "Cha-cha-cha-cha na-na-na-na-", V: "Cha-cha-cha-cha na-na-na-na-" },
+  { time: 10.75, J: "ちゃちゃっちゃっちゃちゃ なななななー", R: "Cha-cha-cha-cha-cha na-na-na-na-", V: "Cha-cha-cha-cha-cha na-na-na-na-" },
+  { time: 14.61, J: "ちゃちゃっちゃっちゃちゃ なななななー", R: "Cha-cha-cha-cha-cha na-na-na-na-", V: "Cha-cha-cha-cha-cha na-na-na-na-" },
+  { time: 18.15, J: "ちゃちゃっちゃっちゃちゃ なななななー", R: "Cha-cha-cha-cha-cha na-na-na-na-", V: "Cha-cha-cha-cha-cha na-na-na-na-" },
+  { time: 21.98, J: "降りろ 降りろ むしろ落っこちろ", R: "Oriro oriro mushiro okkochiro", V: "Rơi xuống đi, rơi xuống đi, đúng hơn là rơi xuống đi" },
+  { time: 25.86, J: "\"お前\"はお呼びではない", R: "\"Omae\" wa oyobi de wa nai", V: "Tao không có gọi mày đâu" },
+  { time: 29.29, J: "閉じろ 閉じろ その口 閉じろ", R: "Tojiro tojiro sono kuchi tojiro", V: "Ngậm miệng đi, ngậm miệng đi, mau ngậm cái miệng mày lại đi" },
+  { time: 32.82, J: "助言など頼んではいない", R: "Jogen nado tanonde wa inai", V: "Tao đéo cần mày chõ mồm vào khuyên gì cả" },
+  { time: 36.72, J: "降りろ 降りろ 今すぐ 降りろ", R: "Oriro oriro ima sugu oriro", V: "Cút xuống ngay, cút xuống ngay, cút xuống  dưới ngay lập tức" },
+  { time: 40.35, J: "\"お前\"に指揮権はない", R: "\"Omae\" ni shikiken wa nai", V: "Mày làm đéo gì có quyền ra lệnh ở đây" },
+  { time: 44.00, J: "どけよ どけよ いやらしい通せんぼ", R: "Dokeyo dokeyo iyarashii toosenbo", V: "Tránh đường ra, tránh đường ra, thứ kỳ đà cản mũi" },
+  { time: 47.35, J: "どかぬなら出すぞチェーンソー", R: "Dokanu nara dasu zo cheensoo(chainsaw)", V: "Không là bố mày đem máy cưa ra đấy" },
+  { time: 50.48, J: "その分厚く肥ったルールブックはお前自前の妄想", R: "Sono buatsuku futotta ruuru bukku(rule book) wa omae jimae no mousou", V: "Cái đống luật lệ dày cộp đó là do mày tự biên tự diễn mà thôi" },
+  { time: 54.60, J: "その恩着せがましいお説教は鏡に向かってどうぞ", R: "Sono onkise gamashii osekkyou wa kagami ni mukatte douzo", V: "Cái trò thuyết giáo ơn nghĩa kể công của mày thì đi mà nói với cái gương đi" },
+  { time: 58.12, J: "その無様に狂ったルールブックをすぐに他人に強要", R: "Sono buzama ni kurutta ruuru bukku(rule book) wo sugu ni tanin ni kyouyou", V: "Cứ áp đặt mấy cái luật lố bịch cho người khác như thế" },
+  { time: 61.74, J: "その矛盾だらけの不純な行動基準 手放せ", R: "Sono mujun darake no fujun na koudou kijun tebanase", V: "Mấy cái tiêu chuẩn đạo đức giả của mày" },
+  { time: 65.00, J: "サヨナラ サヨナラ サヨナラ", R: "Sayonara sayonara sayonara", V: "Tạm biệt, tạm biệt, tạm biệt nhé" },
+  { time: 68.65, J: "腐ったルール ルール ルール", R: "Kusatta ruuru(rule) ruuru ruuru", V: "Mấy cái luật lệ thối nát này" },
+  { time: 72.17, J: "サヨナラ サヨナラ サヨナラ", R: "Sayonara sayonara sayonara", V: "Tạm biệt, tạm biệt, tạm biệt nhé" },
+  { time: 75.80, J: "歪んだルール ルール ルール", R: "Yuganda ruuru(rule) ruuru ruuru", V: "Mấy cái luật lệ méo mó này" },
+  { time: 80.16, J: "ごみはごみばこくずはくずかごへどうぞ", R: "Gomi wa gomibako kuzu wa kuzukago e douzo", V: "Rác thì về thùng rác, còn cặn bã như mày thì nên bỏ vào bể phốt" },
+  { time: 85.69, J: "ちゃっちゃっちゃちゃ なななななー", R: "Cha-cha-cha-cha na-na-na-na-", V: "Cha-cha-cha-cha na-na-na-na-" },
+  { time: 88.92, J: "ちゃちゃっちゃっちゃちゃ なななななー", R: "Cha-cha-cha-cha-cha na-na-na-na-", V: "Cha-cha-cha-cha-cha na-na-na-na-" },
+  { time: 99.91, J: "降りろ 降りろ この船 降りろ", R: "Oriro oriro kono fune oriro", V: "Cút đi, cút đi, cút con mẹ mày đi" },
+  { time: 103.63, J: "\"お前\"は害悪でしかない", R: "\"Omae\" wa gaiaku de shika nai", V: "Mày đúng là một thứ tai họa" },
+  { time: 107.15, J: "閉じろ 閉じろ その口 閉じろ", R: "Tojiro tojiro sono kuchi tojiro", V: "Câm mồm đi, câm mồm đi, câm con mẹ mày đi" },
+  { time: 110.91, J: "助言など頼んではいない", R: "Jogen nado tanonde wa inai", V: "Tao đéo cần mày xen vào chuyện của tao" },
+  { time: 114.45, J: "落ちろ 落ちろ 地獄に堕ちろ", R: "Ochiro ochiro jigoku ni ochiro", V: "Rơi đi, rơi đi, rơi xuống địa ngục mẹ mày đi" },
+  { time: 118.14, J: "\"お前\"にもう居場所はない", R: "\"Omae\" ni mou ibasho wa nai", V: "Mày đéo còn chỗ nào để dung thân đâu" },
+  { time: 121.76, J: "失せろ 失せろ いじらしい通せんぼ", R: "Usero usero ijirashii toosenbo", V: "Biến đi, cút khỏi mắt tao, thứ kỳ đà đáng thương" },
+  { time: 125.74, J: "失せぬなら撃つぞヘッドショット", R: "Usenu nara utsu zo heddo shotto(headshot)", V: "Không là tao bắn mày vỡ đầu" },
+  { time: 128.86, J: "その肥大化しきったルールブックはお前自前の空想", R: "Sono hidaika shikitta ruuru bukku(rule book) wa omae jimae no kuusou", V: "Cái đống luật lệ dày cộp đó là do mày tự biên tự diễn mà thôi" },
+  { time: 132.73, J: "その非難と言う名の自己開示は鏡に向かってどうぞ", R: "Sono hinan to iu na no jiko kaiji wa kagami ni mukatte douzo", V: "Cái trò thuyết giáo ơn nghĩa kể công của mày thì đi mà nói với cái gương đi" },
+  { time: 136.31, J: "その無様に描いたルールブックをすぐに他人に強要", R: "Sono buzama ni egaita ruuru bukku(rule book) wo sugu ni tanin ni kyouyou", V: "Cứ áp đặt mấy cái luật lố bịch cho người khác như thế" },
+  { time: 140.09, J: "その矛盾だらけの不純な行動基準 見直せ", R: "Sono mujun darake no fujun na koudou kijun minaose", V: "Mấy cái tiêu chuẩn đạo đức giả của mày" },
+  { time: 143.05, J: "サヨナラ サヨナラ サヨナラ", R: "Sayonara sayonara sayonara", V: "Tạm biệt, tạm biệt, tạm biệt nhé" },
+  { time: 146.92, J: "お前のルール ルール ルール", R: "Omae no ruuru(rule) ruuru ruuru", V: "Mấy cái luật lệ tiêu chuẩn của mày" },
+  { time: 150.29, J: "サヨナラ サヨナラ サヨナラ", R: "Sayonara sayonara sayonara", V: "Tạm biệt, tạm biệt, tạm biệt nhé" },
+  { time: 154.15, J: "自前のルール ルール ルール", R: "Jimae no ruuru(rule) ruuru ruuru", V: "Mấy cái định nghĩa đạo đức của mày" },
+  { time: 161.27, J: "腐ったルール ルール ルール", R: "Kusatta ruuru(rule) ruuru ruuru", V: "Ba cái luật lệ thối nát" },
+  { time: 168.54, J: "歪んだルール ルール ルール", R: "Yuganda ruuru(rule) ruuru ruuru", V: "Ba cái luật lệ nhảm lồn" },
+  { time: 172.82, J: "ごみはごみばこくずはくずかごへどうぞ", R: "Gomi wa gomibako kuzu wa kuzukago e douzo", V: "Rác thì về thùng rác, còn cặn bã như mày thì nên bỏ vào bể phốt" },
+  { time: 178.57, J: "ちゃっちゃっちゃちゃ なななななー", R: "Cha-cha-cha-cha na-na-na-na-", V: "Cha-cha-cha-cha na-na-na-na-" },
+  { time: 181.73, J: "ちゃちゃっちゃっちゃちゃ なななななー", R: "Cha-cha-cha-cha-cha na-na-na-na-", V: "Cha-cha-cha-cha-cha na-na-na-na-" },
+  { time: 192.63, J: "ちゃちゃっちゃっちゃちゃ", R: "Cha-cha-cha-cha-cha", V: "Cha-cha-cha-cha-cha" }
+];
+
+
+const song=document.getElementById("song"); //lấy thẻ song để phát nhạc
+    const jp=document.querySelector(".Japanese"); //lấy thẻ Japanese để hiện tiếng Nhật
+    const ro=document.querySelector(".Romaji"); //lấy thẻ Romaji để hiện phiên âm
+    const vi=document.querySelector(".Vietnamese"); //lấy thẻ Vietnamese để hiện tiếng Việt
+   
+    song.addEventListener("timeupdate",()=>{ //hàm timeupdate là sự kiện chạy liên tục khi audio đang phát, đơn giản là hàm cập nhật thời gian
+    const currentTime= song.currentTime;
+    let currentLyrics= null; //Chưa có lời phù hợp 
+    for(let i=0; i<lyrics.length; i++){
+        if(currentTime>=lyrics[i].time)
+        {
+            currentLyrics=lyrics[i]; //Nếu currentTime lớn hơn hoặc bằng thời gian lyrics[i].time, tức là bài nhạc đã đến hoặc vượt qua câu đó ⇒ gán currentLyrics là câu đó.
+        }
+        else
+        {
+        break; //Nếu currentTime nhỏ hơn ⇒ dừng vòng lặp (break)
+        }
+    }
+    
+    if(currentLyrics) //Nếu đã tìm thấy câu phù hợp (currentLyrics khác null)
+    {
+    jp.textContent=currentLyrics.J;
+    ro.textContent=currentLyrics.R;
+    vi.textContent=currentLyrics.V;
+    }
+    else //Nếu chưa tới thời gian câu đầu tiên (vd: bài mới bắt đầu) ⇒ xóa nội dung
+    {
+    jp.textContent="";
+    ro.textContent="";
+    vi.textContent="";
+    }
+ }
+);
+</script>
+</html>

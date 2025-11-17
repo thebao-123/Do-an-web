@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="vi">
+    <head>
+        <meta charset="UTF-8">
+        <title>Tabun - YOASOBI</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <style>
+        body{
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    background: rgb(157, 249, 246);
+    color:black;
+    overflow: hidden;/*nếu nội dung bị tràn ra ngòa thì dùng overflow: hidden; để ẩn đi*/
+}
+.play-music{
+    width: 100%;
+    position: relative;
+}
+.background {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+.background-image {
+  display: block;
+  margin: 0 auto;     
+  max-width: 100%;
+  height: auto;
+  max-height: 70vh;
+  object-fit: cover;
+}
+
+.audio{
+    position:relative;
+    text-align: center;
+    width: 100%;
+    margin-top: 20px;
+}
+.lyrics{
+    position: relative;
+    text-align: center;
+    margin-top: 20px;
+    width: 100%;
+    line-height: 1.6;
+}
+.Japanese{
+    font-size: 24px;
+    font-weight: bold;
+}
+.Romaji{
+    font-size: 24px;
+}
+.Vietnamese{
+    font-size: 24px;
+}
+
+      </style>
+    </head>
+    <body>
+        <!--Nội dung-->
+        <div class="play-music">
+            
+            <!--Ảnh background-->
+            <div class="background">
+                <img class="background-image" src="tabun.jpg" alt="background">
+            </div>
+            
+            <!--SUB-->
+            <div class="lyrics">
+                <div class="Japanese">たぶん - YOASOBI</div>
+                <div class="Romaji">Tabun -YOASOBI</div>
+                <div class="Vietnamese">Có lẽ - YOASOBI</div>
+            </div>
+            
+            <!--Nhạc-->
+            <div class="audio">
+                <audio id="song" src="Tabun.mp3" controls></audio>
+            </div>
+            
+        </div>
+    </body>
+    <script>
+        const lyrics = [
+  //Intro
+    { time: 2.24, J: "涙流すことすら無いまま", R: "Namida nagasu koto sura nai mama", V: "Ngay cả một giọt nước mắt em cũng chưa từng để nó hoen mi" },
+  { time: 8.02, J: "過ごした日々の痕一つも残さずに", R: "Sugoshita hibi no ato hitotsu mo nokosazu ni", V: "Và sẽ chẳng bỏ lại dấu vết nào của những ngày đã qua" },
+  { time: 16.76, J: "さよならだ", R: "Sayonara da", V: "Thôi đành tạm biệt" },
+  
+  //Verse 1
+  { time: 24.28, J: "一人で迎えた朝に", R: "Hitori de mukaeta asa ni", V: "Trong buổi sớm mai chỉ có riêng em" },
+  { time: 27.15, J: "鳴り響く誰かの音", R: "Narihibiku dareka no oto", V: "Bỗng có tiếng ai vang vọng" },
+  { time: 29.66, J: "二人で過ごした部屋で", R: "Futari de sugoshita heya de", V: "Trong căn phòng hai ta từng trải qua biết bao nhiêu tháng ngày" },
+  { time: 32.18, J: "目を閉じたまま考えてた", R: "Me wo tojita mama kangaeteta", V: "Em nhắm nghiền mắt suy tư" },
+  { time: 34.77, J: "悪いのは誰だ", R: "Warui no wa dare da", V: "Ai là người sai đây" },
+  { time: 38.61, J: "分かんないよ", R: "Wakannai yo", V: "Lòng em thật sự không rõ" },
+  { time: 40.13, J: "誰のせいでもない", R: "Dare no sei demo nai", V: "Suy đi tính lại chuyện này cũng không phải lỗi của riêng ai cả" },
+  { time: 43.60, J: "たぶん", R: "Tabun", V: "Có lẽ vậy rồi" },
+  
+  //Chorus
+  { time: 44.84, J: "僕らは何回だってきっと", R: "Bokura wa nankai datte kitto", V: "Dù bao nhiêu lần đi nữa" },
+  { time: 47.67, J: "そう何年だってきっと", R: "Sou nannen datte kitto", V: "Đúng vậy, dù bao nhiêu năm đi nữa" },
+  { time: 50.40, J: "さよならと共に終わるだけなんだ", R: "Sayonara to tomo ni owaru dake nan da", V: "Chuyện chúng ta cuối cùng cũng sẽ chỉ kết thúc bằng một câu tạm biệt thôi" },
+  { time: 55.70, J: "仕方がないよきっと", R: "Shikata ga nai yo kitto", V: "Chẳng còn cách nào khác đâu" },
+  { time: 58.24, J: "「おかえり」", R: "\"Okaeri\"", V: "\"Mừng anh đã về\"" },
+  { time: 59.25, J: "思わず零れた言葉は", R: "Omowazu koboreta kotoba wa", V: "Câu nói bất chợt tuôn trào này" },
+  { time: 63.35, J: "違うな", R: "Chigau na", V: "Quá sai lầm rồi" },
+
+  //Verse 2
+  { time: 74.57, J: "一人で迎えた朝に", R: "Hitori de mukaeta asa ni", V: "Trong buổi sớm mai chỉ có riêng em" },
+  { time: 77.33, J: "ふと想う誰かのこと", R: "Futo omou dareka no koto", V: "Bỗng chợt nhớ về một người" },
+  { time: 79.92, J: "二人で過ごした日々の", R: "Futari de sugoshita hibi no", V: "Những điều dung dị của tháng ngày hai ta cạnh kề" },
+  { time: 82.64, J: "当たり前がまだ残っている", R: "Atarimae ga mada nokotteiru", V: "Vẫn còn nằm lại nơi này" },
+  { time: 85.39, J: "悪いのは君だ", R: "Warui no wa kimi da", V: "Là anh sai" },
+  { time: 89.42, J: "そうだっけ", R: "Sou dakke", V: "Là vậy sao" },
+  { time: 90.88, J: "悪いのは僕だ", R: "Warui no wa boku da", V: "Là em sai" },
+  { time: 94.32, J: "たぶん", R: "Tabun", V: "Có lẽ vậy rồi" },
+
+  //Verse 3
+  { time: 95.55, J: "これも大衆的恋愛でしょ", R: "Kore mo taishuuteki renai desho", V: "Tình yêu của ta cũng như của bao người mà" },
+  { time: 98.23, J: "それは最終的な答えだよ", R: "Sore wa saishuuteki na kotae da yo", V: "Đó là đáp án cuối cùng đấy" },
+  { time: 101.02, J: "僕らだんだんとズレていったの", R: "Bokura dandan to zurete itta no", V: "Cứ thế ta dần dần xa cách nhau" },
+  { time: 103.59, J: "それもただよくある聴き慣れたストーリーだ", R: "Sore mo tada yoku arukiki nareta sutoorii da", V: "Và đó cũng là câu chuyện em nghe thành thuộc lòng rồi" },
+  { time: 107.24, J: "あんなに輝いていた日々にすら", R: "Anna ni kagayaiteita hibi ni sura", V: "Ngay cả những tháng ngày đã từng tỏa sáng rạng ngời" },
+  { time: 111.73, J: "埃は積もっていくんだ", R: "Hokori wa tsumotte ikun da", V: "Cũng sẽ chìm trong bụi mờ" },
+
+  //Chorus
+  { time: 116.22, J: "僕らは何回だってきっと", R: "Bokura wa nankai datte kitto", V: "Dù bao nhiêu lần đi nữa" },
+  { time: 119.69, J: "そう何年だってきっと", R: "Sou nannen datte kitto", V: "Đúng vậy, dù bao nhiêu năm đi nữa" },
+  { time: 122.56, J: "さよならに続く道を歩くんだ", R: "Sayonara ni tsuzuku michi wo arukun da", V: "Chúng ta vẫn sẽ đi trên con đường dẫn đến cuộc chia ly" },
+  { time: 128.00, J: "仕方がないよきっと", R: "Shikata ga nai yo kitto", V: "Chẳng còn cách nào khác đâu" },
+  { time: 130.53, J: "「おかえり」", R: "\"Okaeri\"", V: "\"Mừng anh đã về\"" },
+  { time: 131.54, J: "いつもの様に", R: "Itsumo no you ni", V: "Câu nói này cứ như bao lần" },
+  { time: 134.23, J: "零れ落ちた", R: "Koboreochita", V: "Lại tuôn trào" },
+
+  //Bridge
+  { time: 154.75, J: "分かり合えないことなんてさ", R: "Wakariaenai koto nante sa", V: "Chuyện ta không hiểu cho nhau" },
+  { time: 157.07, J: "幾らでもあるんだきっと", R: "Ikura demo arun da kitto", V: "Chắc chắn sẽ có thôi" },
+  { time: 159.56, J: "全てを許し合えるわけじゃないから", R: "Subete wo yurushiaeru wake janai kara", V: "Thế nhưng không hẳn ta sẽ tha thứ cho nhau tất cả" },
+  { time: 165.32, J: "ただ、優しさの日々を", R: "Tada, yasashisa no hibi wo", V: "Chỉ là, nếu cảm nhận những ngày tháng ấm êm" },
+  { time: 167.37, J: "辛い日々と感じてしまったのなら", R: "Tsurai hibi to kanjite shimatta no nara", V: "Lại thành những tháng ngày đau khổ" },
+  { time: 171.60, J: "戻れないから", R: "Modorenai kara", V: "Thì không thể quay lại được rồi" },
+
+  //Chorus
+  { time: 178.27, J: "僕らは何回だってきっと", R: "Bokura wa nankai datte kitto", V: "Chúng ta dù bao nhiêu lần đi nữa" },
+  { time: 180.77, J: "僕らは何回だってきっと", R: "Bokura wa nankai datte kitto", V: "Dù bao nhiêu lần đi nữa" },
+  { time: 183.88, J: "そう何年だってきっと", R: "Sou nannen datte kitto", V: "Đúng vậy, dù bao nhiêu năm đi nữa" },
+  { time: 186.71, J: "さよならと共に終わるだけなんだ", R: "Sayonara to tomo ni owaru dake nan da", V: "Chuyện chúng ta cuối cùng cũng sẽ chỉ kết thúc bằng một câu tạm biệt thôi" },
+  { time: 191.95, J: "仕方がないよきっと", R: "Shikata ga nai yo kitto", V: "Chẳng còn cách nào khác đâu" },
+  { time: 194.46, J: "「おかえり」", R: "\"Okaeri\"", V: "\"Mừng anh đã về\"" },
+  { time: 195.63, J: "思わず零れた言葉は", R: "Omowazu koboreta kotoba wa", V: "Câu nói bất chợt tuôn trào này" },
+  { time: 199.42, J: "違うな", R: "Chigau na", V: "Quá sai lầm rồi" },
+  { time: 201.60, J: "それでも何回だってきっと", R: "Sore demo nankai datte kitto", V: "Dẫu vậy thì dù bao nhiêu lần đi nữa" },
+  { time: 205.07, J: "そう何年だってきっと", R: "Sou nannen datte kitto", V: "Đúng vậy, dù bao nhiêu năm đi nữa" },
+  { time: 207.84, J: "始まりに戻ることが出来たなら", R: "Hajimari ni modoru koto ga dekita nara", V: "Ta sẽ lại nghĩ thoáng qua" },
+  { time: 213.27, J: "なんて、思ってしまうよ", R: "Nante, omotte shimau yo", V: "Giá như mình quay lại được lúc ban đầu" },
+  { time: 215.78, J: "「おかえり」", R: "\"Okaeri\"", V: "\"Mừng anh đã về\"" },
+  { time: 216.71, J: "届かず零れた言葉に", R: "Todokazu koboreta kotoba ni", V: "Trước câu nói bất chợt tuôn trào nhưng không chạm được tới anh" },
+  { time: 220.76, J: "笑った", R: "Waratta", V: "Em chợt cười" },
+
+  //Outro
+  { time: 223.11, J: "少し冷えた朝だ", R: "Sukoshi hieta asa da", V: "Sáng hôm nay có chút lạnh" }
+];
+
+
+    const song=document.getElementById("song"); //lấy thẻ song để phát nhạc
+    const jp=document.querySelector(".Japanese"); //lấy thẻ Japanese để hiện tiếng Nhật
+    const ro=document.querySelector(".Romaji"); //lấy thẻ Romaji để hiện phiên âm
+    const vi=document.querySelector(".Vietnamese"); //lấy thẻ Vietnamese để hiện tiếng Việt
+   
+    song.addEventListener("timeupdate",()=>{ //hàm timeupdate là sự kiện chạy liên tục khi audio đang phát, đơn giản là hàm cập nhật thời gian
+    const currentTime= song.currentTime;
+    let currentLyrics= null; //Chưa có lời phù hợp 
+    for(let i=0; i<lyrics.length; i++){
+        if(currentTime>=lyrics[i].time)
+        {
+            currentLyrics=lyrics[i]; //Nếu currentTime lớn hơn hoặc bằng thời gian lyrics[i].time, tức là bài nhạc đã đến hoặc vượt qua câu đó ⇒ gán currentLyrics là câu đó.
+        }
+        else
+        {
+        break; //Nếu currentTime nhỏ hơn ⇒ dừng vòng lặp (break)
+        }
+    }
+    
+    if(currentLyrics) //Nếu đã tìm thấy câu phù hợp (currentLyrics khác null)
+    {
+    jp.textContent=currentLyrics.J;
+    ro.textContent=currentLyrics.R;
+    vi.textContent=currentLyrics.V;
+    }
+    else //Nếu chưa tới thời gian câu đầu tiên (vd: bài mới bắt đầu) ⇒ xóa nội dung
+    {
+    jp.textContent="";
+    ro.textContent="";
+    vi.textContent="";
+    }
+ });
+    </script>
+</html>
