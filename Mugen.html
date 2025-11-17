@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="vi">
+    <head>
+        <meta charset="UTF-8">
+        <title>∞ - Oguri Cap - CV:Takayanagi Tomoyo</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <style>
+        body{
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    background: #f6e6d5;
+    color:black;
+    overflow: hidden;/*nếu nội dung bị tràn ra ngòa thì dùng overflow: hidden; để ẩn đi*/
+}
+.play-music{
+    width: 100%;
+    position: relative;
+}
+.background {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+.background-image {
+  display: block;
+  margin: 0 auto;     
+  max-width: 100%;
+  height: auto;
+  max-height: 70vh;
+  object-fit: cover;
+}
+
+.audio{
+    position:relative;
+    text-align: center;
+    width: 100%;
+    margin-top: 20px;
+}
+.lyrics{
+    position: relative;
+    text-align: center;
+    margin-top: 20px;
+    width: 100%;
+    line-height: 1.6;
+}
+.Japanese{
+    font-size: 24px;
+    font-weight: bold;
+}
+.Romaji{
+    font-size: 24px;
+}
+.Vietnamese{
+    font-size: 24px;
+}
+
+      </style>
+    </head>
+    <body>
+        <!--Nội dung-->
+        <div class="play-music">
+            
+            <!--Ảnh background-->
+            <div class="background">
+                <img class="background-image" src="Mugen.jpg" alt="background">
+            </div>
+            
+            <!--SUB-->
+            <div class="lyrics">
+                <div class="Japanese">∞ - オグリキャップ - CV:高柳知葉</div>
+                <div class="Romaji">∞ - Oguri Cap - CV:Takayanagi Tomoyo</div>
+                <div class="Vietnamese">∞ - Oguri Cap - CV:Takayanagi Tomoyo</div>
+            </div>
+            
+            <!--Nhạc-->
+            <div class="audio">
+                <audio id="song" src="Mugen.mp3" controls></audio>
+            </div>
+            
+        </div>
+    </body>
+    <script>
+        const lyrics = [
+{time: 0.5, J: "おもいのままに走る", R: "Omoi no mama ni hashiru", V: "Tôi cứ thế vô thức mà chạy tiếp"},
+{time: 4, J: "おもいのままに走る", R: "Omoi no mama ni hashiru", V: "Chạy theo tiếng gọi của con tim"},
+{time: 8, J: "ことしかないんだ ", R: "Koto shika nain da", V: "Vì đó là điều tôi có thể làm"},
+{time: 16, J: "生まれて初めてもうやめようかって口に出した瞬間に", R: "Umarete hajimete mou yameyou ka tte kuchi ni dashita shunkan ni", V: "Lần đầu tiên trong đời khi tôi nói mình muốn từ bỏ mọi thứ"},
+{time: 23, J: "目の前が真っ暗になってしまった朝", R: "Me no mae ga makkura ni natte shimatta asa", V: "Mọi thứ trước mắt bỗng trở nên u ám vào buổi sớm mai ấy"},
+{time: 31, J: "だんだんついてきた理由たちに話しかけられると", R: "Dandan tsuite kita riyuu tachi ni hanashikakerareru to", V: "Khi những lý do chất chứa trong lòng cất tiếng gọi tôi"},
+{time: 38, J: "尻尾はもう負けられないのさ", R: "Shippo wa mou makerarenai no sa", V: "Tôi hiểu rằng mình không thể thua cuộc được"},
+{time: 46, J: "おもいのままに生きる", R: "Omoi no mama ni ikiru", V: "Sống theo cách con tim mách bảo"},
+{time: 54, J: "ギリギリ キリのない霧の中で闇雲に駆け抜けてゆけゆけ", R: "Girigiri kiri no nai kiri no naka de yamikumo ni kakenukete yuke yuke", V: "Dù sương mù có che phủ cũng sẽ chạy hết tốc lực về phía trước"},
+{time: 62, J: "それしかできる", R: "Sore shika dekiru", V: "Vì tôi chỉ có thể làm vậy thôi"},
+{time: 66, J: "これしかできる", R: "Kore shika dekiru", V: "Không còn cách nào khác cả"},
+{time: 70, J: "ことしかないんだ", R: "Koto shika nain da", V: "Bởi đó là điều tôi có thể làm"},
+{time: 74, J: "朝焼け空にあなたを見つけた夜は怖くない", R: "Asayake sora ni anata wo mitsuketa yoru wa kowakunai", V: "Khi thấy bóng hình cậu giữa bầu trời lúc bình minh thì màn đêm không còn đáng sợ nữa"},
+{time: 81, J: "無限の中、ただひとつだけ", R: "Mugen no naka, tada hitotsu dake", V: "Giữa vô vàn vô hạn thì chỉ có điều đó là tồn tại"},
+{time: 90, J:"", R: "", V: ""},
+{time: 104, J: "探して疲れてもう帰ろうかって踵かえす瞬間に", R: "Sagashite tsukarete mou kaerou ka tte kibisu kaesu shunkan ni", V: "Khi tôi mệt mỏi vì phải kiếm tìm và muốn quay về"},
+{time: 112, J: "足元に足跡が道になっててさ", R: "Ashimoto ni ashiato ga michi ni nattete sa", V: "Thì những dấu chân bên dưới đã biến thành con đường"},
+{time: 120, J: "辿っても二度とおんなじとこに辿り着くことはないのだ", R: "Tadottemo nido to onnaji toko ni tadoritsuku koto wa nai no da", V: "Nhưng dù có lần theo, tôi vẫn chẳng thể quay về nơi đó nữa"},
+{time: 127, J: "ずっとね、そう負けられないのさ", R: "Zutto ne, sou makerarenai no sa", V: "Dù biết nhưng tôi sẽ không để bản thân gục ngã"},
+{time: 134, J: "朝焼け空 迷い込んだ鳥が太陽めがけ鳴いた", R: "Asayake sora mayoikonda tori ga taiyou megake naita", V: "Một chú chim lạc lối bay trên bầu trời rạng đông, hướng về mặt trời và cất tiếng hót"},
+{time: 142, J: "はじまりの前の静けさに ", R: "Hajimari no mae no shizukesa ni ", V: "Trong sự tính lặng trước khi mọi thứ bắt đầu"},
+{time: 150, J: "わかんないけど生きる", R: "Wakannai kedo ikiru", V: "Dù không hiểu nhưng tôi vẫn tiếp tục sống"},
+{time: 154, J: "わかんないけど生きる", R: "Wakannai kedo ikiru", V: "Tôi vẫn sống mà chẳng hiểu điều chi"},
+{time: 158, J: "カラカラ 空の窓ガラス割って花種弾けて飛べ飛べ", R: "Karakara kara no mado garasu watte hana tane hajikete tobe tobe", V: "Đập vỡ ô cửa kính rỗng không trên bầu trời để hạt giống bùng nở mà tung bay, tung bay"},
+{time: 166, J: "おもいのままに走る走る", R: "Omoi no mama ni hashiru hashiru", V: "Tôi cứ thế vô thức mà chạy tiếp, chạy tiếp"},
+{time: 170, J: "おもいのままに走る", R: "Omoi no mama ni hashiru", V: "Chạy theo tiếng gọi của con tim"},
+{time: 173, J: "ことしかないんだ", R: "Koto shika nain da", V: "Vì đó là điều tôi có thể làm"},
+{time: 177, J: "朝焼け空にあなたを見つけた夜は怖くない", R: "Asayake sora ni anata wo mitsuketa yoru wa kowakunai", V: "Khi thấy bóng hình cậu giữa bầu trời lúc bình minh thì màn đêm không còn đáng sợ nữa"},
+{time: 185, J: "無限の中、ただひとつだけ", R: "Mugen no naka, tada hitotsu dake", V: "Giữa vô vàn vô hạn thì chỉ có điều đó là tồn tại"},
+{time: 192, J: "わたしの中のさびしさ", R: "Watashi no naka no sabishisa", V: "Nỗi cơ đơn chất chứa trong tôi"},
+{time: 196, J: "あなたの中のさびしさが", R: "Anata no naka no sabishisa ga", V: "Cũng như nỗi cô đơn bên trong cậu"},
+{time: 200, J: "交差するまでの一筋だ", R: "Kousa suru made no hitosuji da", V: "Sẽ giao nhau trên sợi dây vận mệnh ấy "},
+
+
+];
+
+
+
+    const song=document.getElementById("song"); //lấy thẻ song để phát nhạc
+    const jp=document.querySelector(".Japanese"); //lấy thẻ Japanese để hiện tiếng Nhật
+    const ro=document.querySelector(".Romaji"); //lấy thẻ Romaji để hiện phiên âm
+    const vi=document.querySelector(".Vietnamese"); //lấy thẻ Vietnamese để hiện tiếng Việt
+   
+    song.addEventListener("timeupdate",()=>{ //hàm timeupdate là sự kiện chạy liên tục khi audio đang phát, đơn giản là hàm cập nhật thời gian
+    const currentTime= song.currentTime;
+    let currentLyrics= null; //Chưa có lời phù hợp 
+    for(let i=0; i<lyrics.length; i++){
+        if(currentTime>=lyrics[i].time)
+        {
+            currentLyrics=lyrics[i]; //Nếu currentTime lớn hơn hoặc bằng thời gian lyrics[i].time, tức là bài nhạc đã đến hoặc vượt qua câu đó ⇒ gán currentLyrics là câu đó.
+        }
+        else
+        {
+        break; //Nếu currentTime nhỏ hơn ⇒ dừng vòng lặp (break)
+        }
+    }
+    
+    if(currentLyrics) //Nếu đã tìm thấy câu phù hợp (currentLyrics khác null)
+    {
+    jp.textContent=currentLyrics.J;
+    ro.textContent=currentLyrics.R;
+    vi.textContent=currentLyrics.V;
+    }
+    else //Nếu chưa tới thời gian câu đầu tiên (vd: bài mới bắt đầu) ⇒ xóa nội dung
+    {
+    jp.textContent="";
+    ro.textContent="";
+    vi.textContent="";
+    }
+ });
+    </script>
+</html>

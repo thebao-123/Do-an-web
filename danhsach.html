@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="vi">
+    <head>
+        <meta charset="UTF-8">
+        <title>ドラソビのうた</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+
+body {
+background: #191414;
+  font-family: sans-serif;
+  text-align: center;
+  padding: 20px;
+}
+
+h2 {
+  color: white;
+  margin-bottom: 30px;
+}
+
+/* Lưới chia bài hát */
+.song-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 25px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Mỗi ô bài hát */
+.song {
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: 0.2s;
+  overflow: hidden; /* giúp ảnh và chữ gọn trong khung */
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column; /* để ảnh trên, chữ dưới */
+  justify-content: space-between;
+}
+
+/* Khi rê chuột */
+.song:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+/* Ảnh bài hát */
+.song img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  display: block;
+}
+
+/* Tên bài hát */
+.song p {
+  margin: 0;
+  padding: 10px;
+  font-weight: bold;
+  color: #333;
+  font-size: 14px;
+  background: #f9f9f9; /* nền nhẹ để tách khỏi ảnh */
+  border-top: 1px solid #ddd;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap; /* cắt gọn nếu tên quá dài */
+}
+#searchBox {
+  display: block;
+  width: 80%;
+  max-width: 500px;
+  margin: 10px auto 20px auto;
+  padding: 10px 15px;
+  font-size: 16px;
+  border-radius: 20px;
+  border: 1px solid #ccc;
+  outline: none;
+  transition: 0.3s;
+}
+
+#searchBox:focus {
+  border-color: #4CAF50;
+  box-shadow: 0 0 5px #4CAF50;
+}
+
+</style>
+    
+</head>
+    
+<body>
+            
+            <h2>DoraSOBI</h2>
+            
+            <input type="text" id="searchBox" placeholder="Tìm bài hát hoặc ca sĩ/nhóm nhạc" onkeyup="TimKiem()"/>
+            
+            <div class="song-container">
+            
+<div class="song" onclick="phat('Harenohini.html')">
+  <img src="test2.jpg" alt="Hare no hi ni">
+  <p>1. Hare no hi ni – Ushio Reira</p>
+</div><!---->
+
+<div class="song" onclick="phat('Tabun.html')">
+  <img src="tabun.jpg" alt="Tabun">
+  <p>2. Tabun – YOASOBI</p>
+</div><!---->
+
+<div class="song" onclick="phat('Rule.html')">
+  <img src="Rule.jpg" alt="RuLe">
+  <p>3. RuLe – Ado</p>
+</div><!---->
+
+<div class="song" onclick="phat('Idol.html')">
+  <img src="Idol.jpg" alt="Idol">
+  <p>4. Idol – YOASOBI</p>
+</div><!---->
+
+<div class="song" onclick="phat('Haruka.html')">
+  <img src="Haruka.jpg" alt="Haruka">
+  <p>5. Haruka – YOASOBI</p>
+</div><!--CHUADICH-->
+
+<div class="song" onclick="phat('Yorunikakeru.html')">
+  <img src="Yorunikakeru.jpg" alt="Yoru ni kakeru">
+  <p>6. Yoru ni kakeru – YOASOBI</p>
+</div><!--CHUADICH-->
+
+<div class="song" onclick="phat('Sukida.html')">
+  <img src="Sukida.jpg" alt="Suki da">
+  <p>7. Suki da – YOASOBI</p>
+</div>
+
+<div class="song" onclick="phat('Watchme.html')">
+  <img src="Watchme.jpg" alt="Watch me">
+  <p>8. Watch me! – YOASOBI</p>
+</div>
+
+<div class="song" onclick="phat('PLAYERS.html')">
+  <img src="PLAYERS.jpg" alt="PLAYERS">
+  <p>9. PLAYERS – YOASOBI</p>
+</div>
+
+<div class="song" onclick="phat('Elf.html')">
+  <img src="Elf.jpg" alt="Elf">
+  <p>10. Elf – Ado</p>
+</div>
+
+<div class="song" onclick="phat('Aishite.html')">
+  <img src="Aishite.jpg" alt="Aishite Aishite Aishite">
+  <p>11. Aishite Aishite Aishite – Ado</p>
+</div>
+
+<div class="song" onclick="phat('Akumanoko.html')">
+  <img src="Akumanoko.jpg" alt="Akuma no ko">
+  <p>12. Akuma no ko – Ai Higuchi</p>
+</div>
+
+<div class="song" onclick="phat('Bunnygirl.html')">
+  <img src="Bunnygirl.jpg" alt="Bunny Girl">
+  <p>13. Bunny Girl – AKASAKI</p>
+</div>
+
+<div class="song" onclick="phat('Doraemon.html')">
+  <img src="Doraemon.jpg" alt="Doraemon">
+  <p>14. Doraemon – Gen Hoshino</p>
+</div>
+
+<div class="song" onclick="phat('JANEDOE.html')">
+  <img src="JANEDOE.jpg" alt="JANE DOE">
+  <p>15. JANE DOE – Kenshi Yonezu, Hikaru Utada</p>
+</div>
+
+<div class="song" onclick="phat('Lemon.html')">
+  <img src="Lemon.jpg" alt="Lemon">
+  <p>16. Lemon – Kenshi Yonezu</p>
+</div>
+
+<div class="song" onclick="phat('Staywithme.html')">
+  <img src="Staywithme.jpg" alt="Stay With Me">
+  <p>17. Stay With Me – Miki Matsubara</p>
+</div>
+
+<div class="song" onclick="phat('NIGHTDANCER.html')">
+  <img src="NIGHTDANCER.jpg" alt="NIGHT DANCER">
+  <p>18. NIGHT DANCER – imase</p>
+</div>
+
+<div class="song" onclick="phat('PLANET.html')">
+  <img src="PLANET.jpg" alt="PLANET">
+  <p>19. PLANET – Ron Monro</p>
+</div>
+
+<div class="song" onclick="phat('Orenji.html')">
+  <img src="Orenji.png" alt="Orenji">
+  <p>20. Orenji – 7!!</p>
+</div>
+
+<div class="song" onclick="phat('Sukidakara.html')">
+  <img src="Sukidakara.jpg" alt="Sukidakara">
+  <p>21. Sukidakara – Yuika</p>
+</div>
+
+<div class="song" onclick="phat('Kaibutsu.html')">
+  <img src="Kaibutsu.jpg" alt="Kaibutsu">
+  <p>22. Kaibutsu – YOASOBI</p>
+</div>
+
+<div class="song" onclick="phat('TsukitoWatashinoKakurenbo.html')">
+  <img src="TsukitoWatashinoKakurenbo.jpg" alt="Tsuki to Watashi no Kakurenbo">
+  <p>23. Tsuki to Watashi no Kakurenbo – yutori</p>
+</div>
+
+<div class="song" onclick="phat('HyakkaRyouran.html')">
+  <img src="HyakkaRyouran.jpg" alt="Hyakka Ryouran">
+  <p>24. Hyakka Ryouran – Lilas</p>
+</div>
+
+<div class="song" onclick="phat('Shukufuku.html')">
+  <img src="Shukufuku.jpg" alt="Shukufuku">
+  <p>25. Shukufuku – YOASOBI</p>
+</div>
+
+<div class="song" onclick="phat('Gunjou.html')">
+  <img src="Gunjou.jpg" alt="Gunjou">
+  <p>26. Gunjou – YOASOBI</p>
+</div>
+
+<div class="song" onclick="phat('AnatanoKoibitoniNaritai.html')">
+  <img src="AnatanoKoibitoniNaritai.jpg" alt="Anata no Koibito ni Naritai">
+  <p>27. Anata no Koibito ni Naritai – ChoQMay</p>
+</div>
+
+<div class="song" onclick="phat('AotoKirameki.html')">
+  <img src="AotoKirameki.jpg" alt="Ao to Kirameki">
+  <p>28. Ao to Kirameki – Spira Spica</p>
+</div>
+
+<div class="song" onclick="phat('AnoYumewoNazotte.html')">
+  <img src="AnoYumewoNazotte.jpg" alt="Ano Yume wo Nazotte">
+  <p>29. Ano Yume wo Nazotte – YOASOBI</p>
+</div>
+
+<div class="song" onclick="phat('Etcetera.html')">
+  <img src="Etcetera.jpg" alt="Et cetera">
+  <p>30. Et cetera – imase</p>
+</div>
+
+<div class="song" onclick="phat('OtsukareSUMMER.html')">
+  <img src="OtsukareSUMMER.jpg" alt="Otsukare SUMMER">
+  <p>31. Otsukare SUMMER – HALCALI</p>
+</div>
+
+<div class="song" onclick="phat('Seventeen.html')">
+  <img src="Seventeen.jpg" alt="Seventeen">
+  <p>32. Seventeen – YOASOBI</p>
+</div>
+
+<div class="song" onclick="phat('TadaKoeHitotsu.html')">
+  <img src="TadaKoeHitotsu.jpg" alt="Tada Koe Hitotsu">
+  <p>33. Tada Koe Hitotsu – Rokudenashi</p>
+</div>
+
+<div class="song" onclick="phat('BlueBird.html')">
+  <img src="BlueBird.jpg" alt="Blue Bird">
+  <p>34. Blue Bird – Ikimonogakari</p>
+</div>
+
+<div class="song" onclick="phat('LoveLetter.html')">
+  <img src="LoveLetter.jpg" alt="Love Letter">
+  <p>35. Love Letter – YOASOBI</p>
+</div>
+
+<div class="song" onclick="phat('YasashiiSuisei.html')">
+  <img src="YasashiiSuisei.jpg" alt="Yasashii Suisei">
+  <p>36. Yasashii Suisei – YOASOBI</p>
+</div>
+
+<div class="song" onclick="phat('HikaruNara.html')">
+  <img src="HikaruNara.jpg" alt="Hikaru Nara">
+  <p>37. Hikaru Nara – Goose house</p>
+</div>
+
+<div class="song" onclick="phat('TheStoryOfTheWindAndI.html')">
+  <img src="TheStoryofTheWindAndI.jpg" alt="The Story of the Wind and I">
+  <p>38. The Story of the Wind and I – Ado</p>
+</div>
+
+<div class="song" onclick="phat('Usseewa.html')">
+  <img src="Usseewa.jpg" alt="Usseewa">
+  <p>39. Usseewa – Ado</p>
+</div>
+
+<div class="song" onclick="phat('Readymade.html')">
+  <img src="Readymade.jpg" alt="Readymade">
+  <p>40. Readymade – Ado</p>
+</div>
+
+<div class="song" onclick="phat('SakuraBiyori.html')">
+  <img src="Sakura.jpg" alt="Sakura Biyori">
+  <p>41. Sakura Biyori and Time Machine – Ado & Hatsune Miku</p>
+</div>
+
+<div class="song" onclick="phat('Actor.html')">
+  <img src="Actor.jpg" alt="Actor">
+  <p>42. Actor – YOASOBI</p>
+</div><!---->
+
+<div class="song" onclick="phat('Sketch.html')">
+  <img src="Sketch.jpg" alt="Sketch">
+  <p>43. Sketch – Aimyon</p>
+</div>
+
+<div class="song" onclick="phat('YumewoKanaete.html')">
+  <img src="YumewoKanaete.jpg" alt="YumewoKanaete">
+  <p>44. Yume wo Kanaete - MAO</p>
+</div>
+
+<div class="song" onclick="phat('shiranai.html')">
+  <img src="shiranai.jpg" alt="shiranai">
+  <p>45. Shiranai mama de - Rokudenashi</p>
+</div><!---->
+
+<div class="song" onclick="phat('Mugen.html')">
+  <img src="Mugen.jpg" alt="Mugen">
+  <p>46. ∞ - Oguri Cap - CV:Takayanagi Tomoyo</p>
+  </div><!---->
+
+<div class="song" onclick="phat('BrightestHeart.html')">
+  <img src="BrightestHeart.jpg" alt="BH">
+  <p>46. Brightest Heart - Oguri Cap - CV:Takayanagi Tomoyo</p>
+  </div>
+
+<div class="song" onclick="phat('UmapyoiLegend.html')">
+  <img src="Uma.jpg" alt="Uma">
+  <p>47. Umapyoi Legend - Umamusumes</p>
+</div>
+
+        <script>
+            function phat(link){
+    window.location.href=link;
+}
+function TimKiem(){
+    const input=document.getElementById("searchBox");
+    const filter= input.value.trim().toLowerCase();
+
+    const songs=document.getElementsByClassName("song");
+    for(let i=0; i<songs.length; i++){
+        const p= songs[i].getElementsByTagName("p")[0];
+        const textValue= p.textContent||p.innerText;
+    
+    if(textValue.toLowerCase().includes(filter)){
+        songs[i].style.display="";
+    }
+    else{
+        songs[i].style.display="none";
+    }
+}
+}
+        </script>
+    
+</body>
+
+</html>
