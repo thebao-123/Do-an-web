@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="vi">
+    <head>
+        <meta charset="UTF-8">
+        <title>Hare no hi ni - Ushio Reira</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            body{
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    background: antiquewhite;
+    color:black;
+    overflow: hidden;/*nếu nội dung bị tràn ra ngòa thì dùng overflow: hidden; để ẩn đi*/
+}
+.play-music{
+    width: 100%;
+    position: relative;
+}
+.background {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+.background-image {
+  display: block;
+  margin: 0 auto;     
+  max-width: 100%;
+  height: auto;
+  max-height: 70vh;
+  object-fit: cover;
+}
+
+.audio{
+    position:relative;
+    text-align: center;
+    width: 100%;
+    margin-top: 20px;
+}
+.lyrics{
+    position: relative;
+    text-align: center;
+    margin-top: 20px;
+    width: 100%;
+    line-height: 1.6;
+}
+.Japanese{
+    font-size: 24px;
+    font-weight: bold;
+}
+.Romaji{
+    font-size: 24px;
+}
+.Vietnamese{
+    font-size: 24px;
+}
+
+
+        </style>
+    </head>
+    <body>
+        <!--Nội dung-->
+        <div class="play-music">
+            
+            <!--Ảnh background-->
+            <div class="background">
+                <img class="background-image" src="test2.jpg" alt="background">
+            </div>
+            
+            <!--SUB-->
+            <div class="lyrics">
+                <div class="Japanese">ハレの日に - 汐れいら</div>
+                <div class="Romaji">Hare no hi ni - Ushio Reira</div>
+                <div class="Vietnamese">Vào ngày nắng đẹp - Ushio Reira</div>
+            </div>
+
+            <!--Nhạc-->
+            <div class="audio">
+                <audio id="song" src="Harenohini.mp3" controls></audio>
+            </div>
+            
+        </div>
+    </body>
+    <script>
+        const lyrics=[
+    //Intro
+    {time: 2.99, J:"泣いてしまった空をみてた", R:"Naite shimatta sora wo miteta", V:"Em ngước nhìn bầu trời sau khi bật khóc"},
+    {time: 10.08, J:"君を想ってる", R:"Kimi wo omotteru", V:"Và nhớ mong anh"},
+    {time: 14.88, J:"涙のあと乾いてくれない", R:"Namida no ato kawaite kurenai", V:"Những vệt nước mắt chẳng chịu khô"},
+    {time: 20.17, J:"まだ君のにおいがする", R:"Mada kimi no nioi ga suru", V:"Vẫn còn vương mùi hương của anh"},
+    {time: 28, J:"",R:"",V:""},
+    
+    //Verse 1
+    {time: 41.56, J:"藍色 君との電話", R:"Aiiro kimi to no denwa", V:"Cuộc gọi với em nhuốm màu chàm xanh"},
+    {time: 44.19, J:"無理に笑っていた", R:"Muri ni waratte ita", V:"Cùng một nụ cười gượng gạo"},
+    {time: 47.22, J:"曇った空とわたし「今日は会えないね」", R:"Kumotta sora to watashi 'Kyou wa aenai ne'", V:"Dưới bầu trời u ám em nói rằng:“Hôm nay mình không thể gặp nhau nhỉ”"},
+    {time: 52.64, J:"あぁ、これだけのことで悲しくなるんだな", R:"Aa, kore dake no koto de kanashiku narun da na", V:"A… chỉ vậy thôi mà sao em lại buồn đến thế"},
+    {time: 62, J:"",R:"",V:""},
+    //Pre-chorus
+    {time: 64.94, J:"Pleased your flower", R:"Pleased your flower", V:"Làm bông hoa của anh hạnh phúc"},
+    {time: 66.89, J:"とびきりのものじゃなくていい", R:"Tobikiri no mono janakute ii", V:"Không cần phải là thứ gì xa hoa"},
+    {time: 70.03, J:"君がくれるからいい", R:"Kimi ga kureru kara ii", V:"Chỉ cần là món quà từ anh là đủ"},
+    {time: 76.71, J:"Please your love", R:"Please your love", V:"Hạnh phúc với tình yêu của anh"},
+    {time: 78.61, J:"君がふちどった 愛の顔つき", R:"Kimi ga fuchidotta ai no kaotsuki", V:"Tay anh đã vẽ nên gương mặt của tình yêu"},
+    {time: 81.66, J:"ずっと見ていたい", R:"Zutto mite itai", V:"Em muốn mãi ngắm nhìn thôi"},
+   
+    //Chorus
+    {time: 87.39, J:"By my side 君と笑いたい", R:"By my side kimi to waraitai", V:"Ở cạnh em nhé, em muốn cười cùng anh"},
+    {time: 93.12, J:"ただの日常に 愛情が薫っている", R:"Tada no nichijou ni aijou ga kaorutte iru", V:"Tình yêu len lỏi trong những khoảnh khắc thường nhật lúc này"},
+    {time: 99.20, J:"君と過ごす何気ないときが", R:"Kimi to sugosu nanigenai toki ga", V:"Những khoảnh khắc lặng lẽ em dành bên anh"},
+    {time: 104.83, J:"いつだって 花になるから", R:"Itsudatte hana ni naru kara", V:"Luôn luôn trở thành những đóa hoa"},
+     {time: 112, J:"",R:"",V:""},
+    //Verse 2
+    {time: 114.55, J:"I'll eat a cake", R:"I'll eat a cake", V:"Em sẽ ăn một chiếc bánh"},
+    {time: 116.93, J:"とびきり小さくてもいい", R:"Tobikiri chiisakute mo ii", V:"Dù nhỏ xíu cũng không sao"},
+    {time: 119.61, J:"ふたりぶんあればいい", R:"Futari bun areba ii", V:"Chỉ cần đủ cho hai người là được rồi"},
+    {time: 126.24, J:"I want you to eat", R:"I want you to eat", V:"Em muốn anh cùng ăn với em"},
+    {time: 128.36, J:"くれてばっかの君へお返し", R:"Kurete bakka no kimi e okaeshi", V:"Cho anh, bởi anh luôn là người cho đi"},
+    {time: 131.36, J:"感覚を贈りあうよ", R:"Kankaku wo okuri au yo", V:"Chúng ta sẽ trao nhau những xúc cảm"},
+
+    //Chorus
+    {time: 137.02, J:"By my side 君にあげたい", R:"By my side kimi ni agetai", V:"Ở bên em nhé, em muốn trao cho anh"},
+    {time: 142.54, J:"どんな感情も 半分にしていたい", R:"Donna kanjou mo hanbun ni shite itai", V:"Toàn bộ những cảm xúc, mỗi người vun vén nửa phần"},
+    {time: 148.79, J:"君が思う なんでもないことも", R:"Kimi ga omou nandemonai koto mo", V:"Dù là những điều anh cho là bình thường nhất"},
+    {time: 154.49, J:"なんだって わたしは特別に思うから", R:"Nandatte watashi wa tokubetsu ni omou kara", V:"Thì đối với em, hết thảy đều thật đặc biệt"},
+
+    //Bridge
+    {time: 161.49, J:"なんでもない を束ねてたら", R:"Nandemonai wo tabanetetara", V:"Nếu ta gom góp tất cả 'những điều bình thường ấy' "},
+    {time: 165.92, J:"大きなブーケになって", R:"Ookina buuke(bouquet) ni natte", V:"Chúng sẽ trở thành một bó hoa rực rỡ"},
+    {time: 170.96, J:"「ありがとう」と「愛してる」で", R:"Arigatou to Aishiteru de", V:"Bằng lời “Cảm ơn” và “Em yêu anh”"},
+    {time: 176.77, J:"記念日じゃない記念日を飾ってく", R:"Kinenbi janai kinenbi wo kazatteku", V:"Ta cùng tô điểm những ngày chẳng hề đặc biệt thành kỷ niệm khó quên"},
+ {time: 185, J:"",R:"",V:""},
+    //INSTRUMENTAL
+
+    //Chorus
+    {time: 207.36, J:"By my side 今はベールの中", R:"By my side ima wa beeru(veil) no naka", V:"Ở bên em nhé, giờ đây trong tấm voan mỏng"},
+    {time: 212.89, J:"哀しいことは君と見つめたい", R:"Kanashii koto wa kimi to mitsumetai", V:"Em muốn cùng anh đối mặt cả những nỗi buồn"},
+    {time: 218.85, J:"顔を上げさせてくれる君と", R:"Kao wo agesasete kureru kimi to", V:"Ở bên anh người nâng khuôn mặt em lên"},
+    {time: 224.64, J:"ハレの日 誓って", R:"Hare no hi chikatte", V:"Vào ngày nắng đẹp, em nguyện thề"},
+    {time: 230.60, J:"By my side 君といたい", R:"By my side kimi to itai", V:"Ở bên em nhé, em muốn ở bên anh mãi mãi"},
+    {time: 236.49, J:"ただの日常を 一生を祝っていこう", R:"Tada no nichijou wo isshou wo iwatte ikou", V:"Cùng nhau kỷ niệm từng khoảnh khắc bình dị suốt đời"},
+    {time: 242.40, J:"君がすきな花 わたしも持ってて", R:"Kimi ga suki na hana watashi mo mottete", V:"Em đang cầm trên tay bông hoa mà anh yêu"},
+    {time: 248.15, J:"あぁ、もう笑っちゃうね", R:"Aa, mou waracchau ne", V:"A, thật sự chẳng thể ngừng cười mà"},
+     {time: 257, J:"",R:"",V:""},
+ ];
+    
+    const song=document.getElementById("song"); //lấy thẻ song để phát nhạc
+    const jp=document.querySelector(".Japanese"); //lấy thẻ Japanese để hiện tiếng Nhật
+    const ro=document.querySelector(".Romaji"); //lấy thẻ Romaji để hiện phiên âm
+    const vi=document.querySelector(".Vietnamese"); //lấy thẻ Vietnamese để hiện tiếng Việt
+   
+    song.addEventListener("timeupdate",()=>{ //hàm timeupdate là sự kiện chạy liên tục khi audio đang phát, đơn giản là hàm cập nhật thời gian
+    const currentTime= song.currentTime;
+    let currentLyrics= null; //Chưa có lời phù hợp 
+    for(let i=0; i<lyrics.length; i++){
+        if(currentTime>=lyrics[i].time)
+        {
+            currentLyrics=lyrics[i]; //Nếu currentTime lớn hơn hoặc bằng thời gian lyrics[i].time, tức là bài nhạc đã đến hoặc vượt qua câu đó ⇒ gán currentLyrics là câu đó.
+        }
+        else
+        {
+        break; //Nếu currentTime nhỏ hơn ⇒ dừng vòng lặp (break)
+        }
+    }
+    
+    if(currentLyrics) //Nếu đã tìm thấy câu phù hợp (currentLyrics khác null)
+    {
+    jp.textContent=currentLyrics.J;
+    ro.textContent=currentLyrics.R;
+    vi.textContent=currentLyrics.V;
+    }
+    else //Nếu chưa tới thời gian câu đầu tiên (vd: bài mới bắt đầu) ⇒ xóa nội dung
+    {
+    jp.textContent="";
+    ro.textContent="";
+    vi.textContent="";
+    }
+ }
+);
+    </script> 
+</html>
